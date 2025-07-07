@@ -1,0 +1,17 @@
+name: Authenticate to GCP
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  auth-gcp:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      # Pinned to commit hash of v2.1.10 released on 2025-04-25 to prevent supply-chain attacks
+      - uses: 'google-github-actions/auth@ba79af03959ebeac9769e648f473a284504d9193'
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
