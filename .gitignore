@@ -1,0 +1,71 @@
+# macOS - Ignore system files that store folder attributes and thumbnail cache
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows - Ignore system files, thumbnail cache, and recycle bin used in file explorer
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux - Ignore temporary files, backup files, and swap files
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# Visual Studio Code - Ignore workspace settings that shouldn't be shared
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# JetBrains IDEs - Ignore project settings that shouldn't be shared
+.idea/
+*.iml
+*.iws
+*.ipr
+.idea_modules/
+
+# Node.js - Ignore dependencies which should be installed fresh
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+.pnpm-debug.log
+
+# Python - Ignore build artifacts and environment directories
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.coverage
+htmlcov/
+
+# Build directories and packaging files
+dist/
+build/
+*.tgz
+*.tar.gz
+*.zip
