@@ -26,16 +26,12 @@ jobs:
       
       - name: Verify GCP Project Authentication
         run: |
-          # Get the current project from gcloud
           current_project=$(gcloud config get-value project)
           expected_project="${{ secrets.GCP_PROJECT_ID }}"
           
           if [ "$current_project" != "$expected_project" ]; then
-            echo "❌ ERROR: Project mismatch!"
-            echo "Current gcloud project: '$current_project'"
-            echo "Expected project: '$expected_project'"
+            echo "❌ ERROR: Authenticated project does not match the expected project."
             exit 1
           else
-            echo "✅ SUCCESS: Project authentication verified!"
-            echo "Authenticated to correct GCP project: $current_project"
+            echo "✅ SUCCESS: Authenticated to the expected GCP project."
           fi
