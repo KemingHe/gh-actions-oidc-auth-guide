@@ -1,18 +1,18 @@
-# GitHub Actions OpenID Connect Authentication Guide
+# GitHub Actions OpenID Connect (OIDC) Authentication Guide
 
-> - Updated on 2025-07-07 by @KemingHe
+> - Updated on 2025-07-07 by @KemingHe, init file
 > - Maintained by @KemingHe
 
-Guide for keyless GitHub Actions authentication to GCP, Azure (coming soon), and AWS (coming soon) via OpenID Connect.
+Comprehensive guide for keyless GitHub Actions authentication to GCP, Azure (coming soon), and AWS (coming soon) via OpenID Connect.
 
 ## Google Cloud Platform (GCP)
 
-See [auth-gcp.yml](./.github/workflows/auth-gcp.yml).
+TODO
 
 ## Microsoft Azure
 
 Coming soon...
 
-## Amazon Web Service (AWS)
+## Amazon Web Services (AWS)
 
 Coming soon...

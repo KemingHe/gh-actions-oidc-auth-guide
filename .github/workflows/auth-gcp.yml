@@ -2,8 +2,7 @@ name: Authenticate to GCP
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
   workflow_dispatch: {}
 
@@ -24,3 +23,19 @@ jobs:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+      
+      - name: Verify GCP Project Authentication
+        run: |
+          # Get the current project from gcloud
+          current_project=$(gcloud config get-value project)
+          expected_project="${{ secrets.GCP_PROJECT_ID }}"
+          
+          if [ "$current_project" != "$expected_project" ]; then
+            echo "❌ ERROR: Project mismatch!"
+            echo "Current gcloud project: '$current_project'"
+            echo "Expected project: '$expected_project'"
+            exit 1
+          else
+            echo "✅ SUCCESS: Project authentication verified!"
+            echo "Authenticated to correct GCP project: $current_project"
+          fi
