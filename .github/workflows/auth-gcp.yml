@@ -1,0 +1,37 @@
+name: Authenticate to GCP
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch: {}
+
+jobs:
+  auth-gcp:
+    environment: auth-gcp-env
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Get Repo Files
+        uses: actions/checkout@v4
+      - name: Auth to GCP via GitHub OpenID Connect Provider
+        # Pinned 3rd-party action to commit hash of v2.1.10 released on 2025-04-25 to prevent supply-chain attacks
+        uses: 'google-github-actions/auth@ba79af03959ebeac9769e648f473a284504d9193'
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+      
+      - name: Verify GCP Project Authentication
+        run: |
+          current_project=$(gcloud config get-value project)
+          expected_project="${{ secrets.GCP_PROJECT_ID }}"
+          
+          if [ "$current_project" != "$expected_project" ]; then
+            echo "❌ ERROR: Authenticated project does not match the expected project."
+            exit 1
+          else
+            echo "✅ SUCCESS: Authenticated to the expected GCP project."
+          fi
