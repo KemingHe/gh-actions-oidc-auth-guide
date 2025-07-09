@@ -3,8 +3,8 @@ variable "github_repo" {
   description = "The GitHub repository in 'owner/repo' format authorized to authenticate with Google Cloud."
 
   validation {
-    condition     = can(regex("^[a-zA-Z0-9._-]+/[a-zA-Z0-9._-]+$", var.github_repo))
-    error_message = "The github_repo must be in 'owner/repo' format (e.g., 'myorg/myrepo')."
+    condition     = can(regex("^[a-zA-Z0-9]([a-zA-Z0-9._-]*[a-zA-Z0-9])?/[a-zA-Z0-9]([a-zA-Z0-9._-]*[a-zA-Z0-9])?$", var.github_repo))
+    error_message = "The github_repo must be in 'owner/repo' format with valid GitHub naming conventions (e.g., 'myorg/myrepo')."
   }
 }
 
@@ -13,8 +13,8 @@ variable "gcp_project_id" {
   description = "The target Google Cloud project ID for resource creation and management."
 
   validation {
-    condition     = can(regex("^[a-z][a-z0-9-]{5,29}$", var.gcp_project_id))
-    error_message = "The gcp_project_id must be 6-30 characters long and contain only lowercase letters, numbers, and hyphens."
+    condition     = can(regex("^[a-z][a-z0-9-]{4,28}[a-z0-9]$", var.gcp_project_id))
+    error_message = "The gcp_project_id must be 6-30 characters long, start with a lowercase letter, cannot end with a hyphen, and contain only lowercase letters, numbers, and hyphens."
   }
 }
 
@@ -24,8 +24,8 @@ variable "service_account_id" {
   default     = "github-actions-sa"
 
   validation {
-    condition     = can(regex("^[a-z0-9-]{6,30}$", var.service_account_id))
-    error_message = "The service_account_id must be 6-30 characters long and contain only lowercase letters, numbers, and hyphens."
+    condition     = can(regex("^[a-z][a-z0-9-]{5,29}$", var.service_account_id))
+    error_message = "The service_account_id must be 6-30 characters long, start with a lowercase letter, and contain only lowercase letters, numbers, and hyphens."
   }
 }
 
@@ -35,8 +35,8 @@ variable "wif_pool_id" {
   default     = "github-actions-pool"
 
   validation {
-    condition     = can(regex("^[a-z0-9-]{4,32}$", var.wif_pool_id))
-    error_message = "The wif_pool_id must be 4-32 characters long and contain only lowercase letters, numbers, and hyphens."
+    condition     = can(regex("^[a-z][a-z0-9-]{3,31}$", var.wif_pool_id))
+    error_message = "The wif_pool_id must be 4-32 characters long, start with a lowercase letter, and contain only lowercase letters, numbers, and hyphens."
   }
 }
 
@@ -46,7 +46,7 @@ variable "wif_provider_id" {
   default     = "github-actions-provider"
 
   validation {
-    condition     = can(regex("^[a-z0-9-]{4,32}$", var.wif_provider_id))
-    error_message = "The wif_provider_id must be 4-32 characters long and contain only lowercase letters, numbers, and hyphens."
+    condition     = can(regex("^[a-z][a-z0-9-]{3,31}$", var.wif_provider_id))
+    error_message = "The wif_provider_id must be 4-32 characters long, start with a lowercase letter, and contain only lowercase letters, numbers, and hyphens."
   }
 }
