@@ -1,0 +1,16 @@
+# =============================================================================
+# TERRAFORM VARIABLES EXAMPLE
+# =============================================================================
+# Copy to terraform.tfvars and customize with your values.
+
+# REQUIRED: GitHub repository in 'owner/repo' format
+# Example: "myorg/myrepo" or "username/my-project"
+github_repo = "your-org/your-repo"
+
+# REQUIRED: GCP project ID (6-30 chars: lowercase, numbers, hyphens)
+gcp_project_id = "your-gcp-project-id"
+
+# OPTIONAL: Override defaults (uncomment to customize)
+# service_account_id = "my-custom-sa"
+# wif_pool_id = "my-custom-pool"
+# wif_provider_id = "my-custom-provider"
