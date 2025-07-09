@@ -13,7 +13,7 @@ variable "gcp_project_id" {
   description = "The target Google Cloud project ID for resource creation and management."
 
   validation {
-    condition     = can(regex("^[a-z0-9-]{6,30}$", var.gcp_project_id))
+    condition     = can(regex("^[a-z][a-z0-9-]{5,29}$", var.gcp_project_id))
     error_message = "The gcp_project_id must be 6-30 characters long and contain only lowercase letters, numbers, and hyphens."
   }
 }
