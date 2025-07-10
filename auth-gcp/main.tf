@@ -17,6 +17,7 @@ locals {
 
 resource "google_project_service" "core_apis" {
   for_each = toset([
+    "serviceusage.googleapis.com",
     "iam.googleapis.com",
     "iamcredentials.googleapis.com",
     "sts.googleapis.com",
@@ -24,7 +25,7 @@ resource "google_project_service" "core_apis" {
 
   project                    = var.gcp_project_id
   service                    = each.key
-  disable_dependent_services = true
+  disable_dependent_services = false
   disable_on_destroy         = false
 }
 

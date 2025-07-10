@@ -1,6 +1,6 @@
 # GitHub Actions OIDC Authentication to GCP
 
-> Updated on 2025-07-09 by @KemingHe
+> Updated on 2025-07-10 by @KemingHe
 
 Terraform configuration for OpenID Connect (OIDC) authentication between GitHub Actions and Google Cloud Platform (GCP), eliminating service account JSON files.
 
@@ -52,7 +52,8 @@ auth-gcp/
 4. **Workflow usage:**
 
    ```yaml
-   - uses: 'google-github-actions/auth@v2.1.10'
+   - name: Authenticate to GCP
+     uses: 'google-github-actions/auth@v2.1.10' # Pinned to avoid supply-chain attacks
      with:
        workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
        service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
@@ -87,13 +88,15 @@ resource "google_project_iam_member" "storage_admin" { # Example
 - **Multiple repos:**
 
   ```hcl
+  # Edit main.tf attribute_condition directly for multiple repositories
   attribute_condition = "assertion.repository in ['org/repo1', 'org/repo2']"
   ```
 
-- **Branch restrictions:**
+- **Custom attribute conditions:**
   
   ```hcl
-  attribute_condition = "assertion.repository == '${var.github_repo}' && assertion.ref == 'refs/heads/main'"
+  # Edit main.tf for custom conditions such as restricting to specific users
+  attribute_condition = "assertion.repository == '${var.github_repo}' && assertion.actor == 'specific-user'"
   ```
 
 ## 📚 References

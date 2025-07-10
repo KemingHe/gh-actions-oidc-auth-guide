@@ -1,6 +1,6 @@
 variable "github_repo" {
   type        = string
-  description = "The GitHub repository in 'owner/repo' format authorized to authenticate with Google Cloud."
+  description = "The GitHub repository in 'owner/repo' format authorized to authenticate with Google Cloud"
 
   validation {
     condition     = can(regex("^[a-zA-Z0-9]([a-zA-Z0-9._-]*[a-zA-Z0-9])?/[a-zA-Z0-9]([a-zA-Z0-9._-]*[a-zA-Z0-9])?$", var.github_repo))
@@ -10,7 +10,7 @@ variable "github_repo" {
 
 variable "gcp_project_id" {
   type        = string
-  description = "The target Google Cloud project ID for resource creation and management."
+  description = "The target Google Cloud project ID for resource creation and management"
 
   validation {
     condition     = can(regex("^[a-z][a-z0-9-]{4,28}[a-z0-9]$", var.gcp_project_id))
@@ -20,7 +20,7 @@ variable "gcp_project_id" {
 
 variable "service_account_id" {
   type        = string
-  description = "The unique ID for the Google Cloud Service Account. Must be 6-30 characters, lowercase letters, numbers, and hyphens."
+  description = "The unique ID for the Google Cloud Service Account (must be 6-30 characters, lowercase letters, numbers, and hyphens)"
   default     = "github-actions-sa"
 
   validation {
@@ -31,7 +31,7 @@ variable "service_account_id" {
 
 variable "wif_pool_id" {
   type        = string
-  description = "The unique ID for the Workload Identity Pool. Must be 4-32 characters, lowercase letters, numbers, and hyphens."
+  description = "The unique ID for the Workload Identity Pool (must be 4-32 characters, lowercase letters, numbers, and hyphens)"
   default     = "github-actions-pool"
 
   validation {
@@ -42,7 +42,7 @@ variable "wif_pool_id" {
 
 variable "wif_provider_id" {
   type        = string
-  description = "The unique ID for the Workload Identity Federation Provider. Must be 4-32 characters, lowercase letters, numbers, and hyphens."
+  description = "The unique ID for the Workload Identity Federation Provider (must be 4-32 characters, lowercase letters, numbers, and hyphens)"
   default     = "github-actions-provider"
 
   validation {
