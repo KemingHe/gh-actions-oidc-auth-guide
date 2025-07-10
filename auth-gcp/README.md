@@ -59,6 +59,8 @@ auth-gcp/
        service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
    ```
 
+5. **Cleanup:** Run `terraform destroy` to remove all resources when no longer needed
+
 ## 🔧 Customization
 
 ### Application Permissions
